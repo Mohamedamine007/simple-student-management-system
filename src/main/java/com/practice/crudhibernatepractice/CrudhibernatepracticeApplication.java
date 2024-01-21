@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import com.practice.crudhibernatepractice.entity.Student;
 
+import java.util.List;
 import java.util.Scanner;
 
 @SpringBootApplication
@@ -32,7 +33,7 @@ public class CrudhibernatepracticeApplication {
 			int userInput;
 			do {
 
-
+				System.out.println("*************** MENU ****************");
 				System.out.println("Add a student: 1");
 				System.out.println("Display a student by its last name: 2");
 				System.out.println("Display all students: 3");
@@ -51,11 +52,11 @@ public class CrudhibernatepracticeApplication {
 						break;
 					case 2:
 
-						System.out.println("This functionality not added yet");
+						findStudentByLastName(studentDAO);
 						break;
 					case 3:
 
-						System.out.println("This functionality not added yet");
+						findAllStudents(studentDAO);
 						break;
 					case 4:
 
@@ -89,6 +90,43 @@ public class CrudhibernatepracticeApplication {
 		System.out.println("Adding student...");
 		studentDAO.add(studentToAdd);
 		System.out.println("Student added successfully");
+	}
+
+	private void findStudentByLastName(StudentDAO studentDAO) {
+
+		System.out.println("Last name of searched student: ");
+		String lastNameToSearch = scanner.nextLine();
+
+		List<Student> searchedStudents = studentDAO.findByLastName(lastNameToSearch);
+
+		if(!searchedStudents.isEmpty()) {
+
+			for(Student student: searchedStudents) {
+				System.out.println(student);
+			}
+		}else {
+
+			System.out.println("Student " + lastNameToSearch + " not found");
+		}
+	}
+
+	public void findAllStudents(StudentDAO studentDAO) {
+
+		System.out.println("Searching for students...");
+
+		List<Student> studentList = studentDAO.findAll();
+
+		if(!studentList.isEmpty()) {
+
+			System.out.println("There's is the students: ");
+			for(Student student: studentList) {
+
+				System.out.println(student);
+			}
+		}else {
+
+			System.out.println("Students table is null");
+		}
 	}
 }
 

@@ -64,4 +64,9 @@ public class Student {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String toString() {
+
+        return "Student [ id: " + id + " | first name: " + firstName + " | last name: " + lastName + " email: " + email + " ]";
+    }
 }
