@@ -64,7 +64,7 @@ public class CrudhibernatepracticeApplication {
 						break;
 					case 5:
 
-						System.out.println("This functionality not added yet");
+						deleteStudent(studentDAO);
 						break;
 					default:
 
@@ -153,6 +153,17 @@ public class CrudhibernatepracticeApplication {
 		studentDAO.update(studentToUpdate);
 		System.out.println("Updated Successfully");
 		System.out.println("New student infos: " + studentToUpdate);
+	}
+
+	private void deleteStudent(StudentDAO studentDAO) {
+
+		System.out.println("Id of the student to delete: ");
+		int idToDelete = scanner.nextInt();
+		scanner.nextLine();
+
+		System.out.println("Deleting student...");
+		studentDAO.delete(idToDelete);
+		System.out.println("Student deleted successfully");
 	}
 }
 
