@@ -60,7 +60,7 @@ public class CrudhibernatepracticeApplication {
 						break;
 					case 4:
 
-						System.out.println("This functionality not added yet");
+						updateStudent(studentDAO);
 						break;
 					case 5:
 
@@ -127,6 +127,32 @@ public class CrudhibernatepracticeApplication {
 
 			System.out.println("Students table is null");
 		}
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+
+		System.out.println("Id of student to update: ");
+		int idToUpdate = scanner.nextInt();
+		scanner.nextLine();
+
+		Student studentToUpdate = studentDAO.findById(idToUpdate);
+
+		System.out.println("Enter new first name: ");
+		String newFirstName = scanner.nextLine();
+		studentToUpdate.setFirstName(newFirstName);
+
+		System.out.println("Enter new last name: ");
+		String newLastName = scanner.nextLine();
+		studentToUpdate.setLastName(newLastName);
+
+		System.out.println("Enter new email: ");
+		String newEmail = scanner.nextLine();
+		studentToUpdate.setEmail(newEmail);
+
+		System.out.println("Updating informations...");
+		studentDAO.update(studentToUpdate);
+		System.out.println("Updated Successfully");
+		System.out.println("New student infos: " + studentToUpdate);
 	}
 }
 
